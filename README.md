@@ -1,6 +1,6 @@
 # Pong (1.Version)
 
-Ein einfaches Pong-Spiel in Python mit turtle
+Ein einfaches Pong-Spiel in Python mit der Spielebibliothek "turtle"
 
 ## Starten
 python main.py
