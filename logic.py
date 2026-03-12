@@ -39,3 +39,13 @@ def create_ball():
     ball.penup()
     ball.goto(0, 0)
 
+# Scoreboard erstellen (Christina Kaiser)
+# pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
+def create_scoreboard():
+    pen = turtle.Turtle()
+    pen.speed(0)
+    pen.color("White")
+    pen.penup()
+    pen.hideturtle()
+    pen.goto(0, 260)
+    pen.write("Player 1: 0 Player 2: 0", align="center", font=("Courier", 26, "normal"))
