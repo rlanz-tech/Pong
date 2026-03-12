@@ -13,7 +13,6 @@ def create_window():
 
 # Balken erstellen (Robin Lanz)
 def create_bars(barwidth, barheight, barstartpos):
-
         bar_left = turtle.Turtle()
         bar_left.speed(0)
         bar_left.shape("square")

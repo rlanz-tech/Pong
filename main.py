@@ -8,9 +8,8 @@ bar_height = 1
 barstartpos = 350
 
 wn = logic.create_window()
-#logic.create_bars(logic.bar_width, logic.bar_height, logic.barstartpos)
+logic.create_bars(bar_width, bar_height, barstartpos)
 
 
 while True:
     wn.update()
-    logic.create_bars(bar_width, bar_height, barstartpos)
