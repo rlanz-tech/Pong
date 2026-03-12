@@ -1,4 +1,4 @@
-# Pong (1.Version)
+# Pong (1.Version)(Python 3.14.2)
 
 Ein einfaches Pong-Spiel in Python mit der Spielebibliothek "turtle"
 
@@ -14,3 +14,9 @@ ESC = Beenden
 - 2 Spieler
 - Punktesystem
 - Ball- & Paddle-Kollisionen
+
+## Mitglieder
+- Fabian Thiele
+- Christina Kaiser
+- Sebastian Hacker
+- Robin Lanz 
