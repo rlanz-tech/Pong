@@ -12,6 +12,7 @@ def create_window():
     return wn
 
 # Balken erstellen (Robin Lanz)
+# penup -> "Stift anheben", damit bei Bewegungen keine Linien gezeichnet werden
 def create_bars(barwidth, barheight, barstartpos):
         bar_left = turtle.Turtle()
         bar_left.speed(0)
@@ -29,6 +30,14 @@ def create_bars(barwidth, barheight, barstartpos):
         bar_right.penup()
         bar_right.goto(barstartpos, 0)
 
+# Ball erstellen -> Grafische Visualisierung (Sebastian Hacker) 
+def create_ball():
+    ball = turtle.Turtle()
+    ball.speed(0)
+    ball.shape("square")
+    ball.color("white")
+    ball.penup()
+    ball.goto(0, 0)
 
 # Scoreboard erstellen (Christina Kaiser)
 # pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird

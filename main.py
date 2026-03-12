@@ -9,8 +9,10 @@ barstartpos = 350
 score_one = 0
 score_two = 0
 
+# Optische Wiedergabe des Spielfensters: Bars(Robin Lanz) und Ball(Sebastian Hacker)
 wn = logic.create_window()
 logic.create_bars(bar_width, bar_height, barstartpos)
+logic.create_ball()
 logic.create_scoreboard()
 
 
