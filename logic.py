@@ -11,4 +11,22 @@ def create_window():
     wn.tracer(0)
     return wn
 
+# Balken erstellen (Robin Lanz)
+def create_bars(barwidth, barheight, barstartpos):
+        bar_left = turtle.Turtle()
+        bar_left.speed(0)
+        bar_left.shape("square")
+        bar_left.color("white")
+        bar_left.shapesize(stretch_wid = barwidth, stretch_len = barheight)
+        bar_left.penup()
+        bar_left.goto(-barstartpos, 0)
+
+        bar_right = turtle.Turtle()
+        bar_right.speed(0)
+        bar_right.shape("square")
+        bar_right.color("white")
+        bar_right.shapesize(stretch_wid = barwidth, stretch_len = barheight)
+        bar_right.penup()
+        bar_right.goto(barstartpos, 0)
+
 
