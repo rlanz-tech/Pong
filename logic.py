@@ -31,6 +31,7 @@ def create_bars(barwidth, barheight, barstartpos):
 
 
 # Scoreboard erstellen (Christina Kaiser)
+# pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
 def create_scoreboard():
     pen = turtle.Turtle()
     pen.speed(0)
