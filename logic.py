@@ -11,7 +11,7 @@ def create_window():
     wn.tracer(0)
     return wn
 
-# Balken erstellen (Robin Lanz)
+# Schläger erstellen (Robin Lanz)
 def create_bars(barwidth, barheight, barstartpos):
         bar_left = turtle.Turtle()
         bar_left.speed(0)
@@ -28,5 +28,28 @@ def create_bars(barwidth, barheight, barstartpos):
         bar_right.shapesize(stretch_wid = barwidth, stretch_len = barheight)
         bar_right.penup()
         bar_right.goto(barstartpos, 0)
+        
+        return bar_left, bar_right
+
+# Schläger bewegen (Robin Lanz)
+def bar_left_up(bar, speed):
+    y = bar.ycor()
+    y += speed
+    bar.sety(y)
+
+def bar_left_down(bar, speed):
+    y = bar.ycor()
+    y -= speed
+    bar.sety(y)
+
+def bar_right_up(bar, speed):
+    y = bar.ycor()
+    y += speed
+    bar.sety(y)
+
+def bar_right_down(bar, speed):
+    y = bar.ycor()
+    y -= speed
+    bar.sety(y)
 
 
