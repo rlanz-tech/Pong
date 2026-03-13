@@ -52,6 +52,8 @@ def bar_right_down(bar, speed):
     bar.sety(y)
 
 # Ball erstellen -> Grafische Visualisierung (Sebastian Hacker) 
+# Update: 13.03 15Uhr: Achsen (x/y) für die Gewschindigkeit des Balls hinzugefügt. Return zur Benutzung im main.py ergänzt. (Sebastian Hacker)
+# Anmerkung: Ball Gewschwindigkeit zum Testen auf 0.1 gesetzt, damit die Bewegung sichtbar ist. Kann später angepasst werden.
 def create_ball():
     ball = turtle.Turtle()
     ball.speed(0)
@@ -59,6 +61,16 @@ def create_ball():
     ball.color("white")
     ball.penup()
     ball.goto(0, 0)
+
+    ball.xaxis = 0.1
+    ball.yaxis = 0.1
+    return ball
+
+#  Ball Bewegung berechnen ohne Kolision(Sebastian Hacker)
+def move_ball(ball):
+    ball.setx(ball.xcor() + ball.xaxis)
+    ball.sety(ball.ycor() + ball.yaxis)
+
 
 # Scoreboard erstellen (Christina Kaiser)
 # pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
