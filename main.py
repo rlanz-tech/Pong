@@ -9,6 +9,7 @@ bar_height = 1
 barstartpos = 350
 bar_speed = 20
 
+# Punktestand wird auf Null gesetzt 
 score_one = 0
 score_two = 0
 
@@ -16,8 +17,7 @@ score_two = 0
 wn = logic.create_window()
 bar_left, bar_right = logic.create_bars(bar_width, bar_height, barstartpos) 
 ball = logic.create_ball()
-
-logic.create_scoreboard()
+pen = logic.create_scoreboard()
 
 # Tasteneingabe führt Bewegungsfunktion aus (Robin Lanz)
 wn.listen()
@@ -34,7 +34,8 @@ while True:
     logic.move_ball(ball)
 
     # Kollisionserkennung mit den Grenzen(Fabian Thiele)
-    logic.collision_border(ball)
+    # Funktion gibt den aktuellen Punktestand zurück
+    score_one, score_two = logic.collision_border(ball, pen, score_one, score_two)
 
     # Kollision von Schläger und Ball (Christina Kaiser)
     logic.collision_bar(ball, bar_left, bar_right)
