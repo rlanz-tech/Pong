@@ -35,7 +35,7 @@ while True:
 
     # Kollisionserkennung mit den Grenzen(Fabian Thiele)
     logic.collision_border(ball)
-    
 
-
+    # Kollision von Schläger und Ball (Christina Kaiser)
+    logic.collision_bar(ball, bar_left, bar_right)
 

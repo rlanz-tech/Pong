@@ -89,6 +89,15 @@ def collision_border(ball):
         ball.goto(0, 0)
         ball.xaxis *= -1
 
+# Kollision von Schäger und Ball (Christina Kaiser)
+def collision_bar(ball, bar_left, bar_right):
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < bar_right.ycor() + 50 and ball.ycor() > bar_right.ycor() - 50):
+        ball.setx(340)
+        ball.xaxis *= -1
+
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 50 and ball.ycor() > bar_left.ycor() - 50):
+        ball.setx(-340)
+        ball.xaxis *= -1
 
 # Scoreboard erstellen (Christina Kaiser)
 # pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
