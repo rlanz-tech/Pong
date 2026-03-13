@@ -72,7 +72,8 @@ def move_ball(ball):
     ball.sety(ball.ycor() + ball.yaxis)
 
 # Kollisionserkennung mit der Obergrenze und Untergrenze(Fabian Thiele)
-def collision_border(ball):
+# Score wird erhöht, wenn der Ball die Grenze auf einer x Seite berührt. Punktestand wird zurückgegeben, aktuallisiert und angezeigt.(Christina Kaiser)
+def collision_border(ball, pen, score_one, score_two):
     if ball.ycor() > 290:
         ball.sety(290)
         ball.yaxis *= -1
@@ -84,10 +85,19 @@ def collision_border(ball):
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.xaxis *= -1
+        score_one += 1
+        pen.clear()
+        pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.xaxis *= -1
+        score_two += 1
+        pen.clear()
+        pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
+
+    return score_one, score_two
+
 
 # Kollision von Schäger und Ball (Christina Kaiser)
 def collision_bar(ball, bar_left, bar_right):
@@ -109,3 +119,4 @@ def create_scoreboard():
     pen.hideturtle()
     pen.goto(0, 260)
     pen.write("Player 1: 0 Player 2: 0", align="center", font=("Courier", 26, "normal"))
+    return pen
