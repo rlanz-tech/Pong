@@ -33,4 +33,9 @@ while True:
     # Ballbewegung (Sebastian Hacker)
     logic.move_ball(ball)
 
+    # Kollisionserkennung mit den Grenzen(Fabian Thiele)
+    logic.collision_border(ball)
+    
+
+
 

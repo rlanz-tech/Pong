@@ -71,6 +71,24 @@ def move_ball(ball):
     ball.setx(ball.xcor() + ball.xaxis)
     ball.sety(ball.ycor() + ball.yaxis)
 
+# Kollisionserkennung mit der Obergrenze und Untergrenze(Fabian Thiele)
+def collision_border(ball):
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.yaxis *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.yaxis *= -1
+    
+    if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball.xaxis *= -1
+
+    if ball.xcor() < -390:
+        ball.goto(0, 0)
+        ball.xaxis *= -1
+
 
 # Scoreboard erstellen (Christina Kaiser)
 # pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
