@@ -52,8 +52,8 @@ def bar_right_down(bar, speed):
     bar.sety(y)
 
 # Ball erstellen -> Grafische Visualisierung (Sebastian Hacker) 
-# Update: 13.03 15Uhr: Achsen (x/y) für die Gewschindigkeit des Balls hinzugefügt. Return zur Benutzung im main.py ergänzt. (Sebastian Hacker)
-# Anmerkung: Ball Gewschwindigkeit zum Testen auf 0.1 gesetzt, damit die Bewegung sichtbar ist. Kann später angepasst werden.
+    # Update: 13.03 15Uhr: Achsen (x/y) für die Gewschindigkeit des Balls hinzugefügt. Return zur Benutzung im main.py ergänzt. (Sebastian Hacker)
+    # Anmerkung: Ball Gewschwindigkeit zum Testen auf 0.1 gesetzt, damit die Bewegung sichtbar ist. Kann später angepasst werden.
 def create_ball():
     ball = turtle.Turtle()
     ball.speed(0)
@@ -64,7 +64,11 @@ def create_ball():
 
     ball.xaxis = 0.1
     ball.yaxis = 0.1
-    return ball
+    # Update: 18.03: Verschiedene Farben für den Ball(Sebastian Hacker)
+    #ball.colorlist = ["white", "red", "blue"]
+    #ball.hitcount = 0
+
+    return ball    
 
 #  Ball Bewegung berechnen ohne Kolision(Sebastian Hacker)
 def move_ball(ball):
@@ -100,14 +104,19 @@ def collision_border(ball, pen, score_one, score_two):
 
 
 # Kollision von Schäger und Ball (Christina Kaiser)
+    # Update: 18.03: Hitbox der Schläger angepasst, damit die Kollision besser erkannt wird (Sebastian Hacker)
 def collision_bar(ball, bar_left, bar_right):
-    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < bar_right.ycor() + 50 and ball.ycor() > bar_right.ycor() - 50):
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < bar_right.ycor() + 68 and ball.ycor() > bar_right.ycor() - 68):
         ball.setx(340)
         ball.xaxis *= -1
+        # Update: 18.03: Verschiedene Farben für den Ball(Sebastian Hacker)
+        #ball.hitcount += 1
 
-    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 50 and ball.ycor() > bar_left.ycor() - 50):
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 68 and ball.ycor() > bar_left.ycor() - 68):
         ball.setx(-340)
         ball.xaxis *= -1
+        # Update: 18.03: Verschiedene Farben für den Ball(Sebastian Hacker)
+        #ball.hitcount += 1
 
 # Scoreboard erstellen (Christina Kaiser)
 # pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
