@@ -65,7 +65,7 @@ def create_ball():
     # Variable Farbe (Liste und Frequenz darf ohne weiteres verändert werden)
     ball.hitcount = 0
     ball.colorlst = ["green", "red", "blue", "purple"]
-    ball.color_change_frequency = 4
+    ball.color_change_frequency = 2
     # Ballgeschwindigkeit
     ball.xaxis = 2.5
     ball.yaxis = 2
