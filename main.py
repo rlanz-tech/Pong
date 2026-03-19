@@ -1,6 +1,7 @@
 # Hauptloop
 
 import logic
+import time 
 
 # Standardwerte in Variablen
 # Anmerkung: Im Vollbild stimmt die Posistion der Schläger nicht mehr
@@ -28,6 +29,8 @@ wn.onkeypress(lambda: logic.bar_right_down(bar_right, bar_speed), "Down")
 
 
 while True:
+    # sleep Sorgt dafür, dass die Bewegung weniger Hardware abhängig ist, Flüßigkeit bei guter Hardwarebenutzung leidet jedoch darunter
+    time.sleep(0.01)
     wn.update()
 
     # Ballbewegung (Sebastian Hacker)
