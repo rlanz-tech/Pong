@@ -30,6 +30,39 @@ def create_bars(barwidth, barheight, barstartpos):
         bar_right.goto(barstartpos, 0)
         return bar_left, bar_right
 
+# Variablen für den Tasteninput (Robin Lanz)
+key_w = False
+key_s = False
+key_up = False
+key_down = False
+
+# Funktionen für die Tasten (Robin Lanz)
+def key_press_w():
+    global key_w
+    key_w = True
+def key_press_s():
+    global key_s
+    key_s = True
+def key_press_up():
+    global key_up
+    key_up = True
+def key_press_down():
+    global key_down
+    key_down = True
+
+def key_release_w():
+    global key_w
+    key_w = False
+def key_release_s():
+    global key_s
+    key_s = False
+def key_release_up():
+    global key_up
+    key_up = False
+def key_release_down():
+    global key_down
+    key_down = False
+
 # Schläger bewegen (Robin Lanz)
 def bar_left_up(bar, speed):
     y = bar.ycor()
