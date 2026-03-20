@@ -4,7 +4,6 @@ import logic
 import time 
 
 # Standardwerte in Variablen
-# Anmerkung: Im Vollbild stimmt die Posistion der Schläger nicht mehr
 bar_width = 5
 bar_height = 1
 barstartpos = 350
