@@ -26,7 +26,7 @@
 ---
 **Aber:**
 Am Anfang wurden die Zahlen alle übereinander geschrieben, da wir es mit dem Pen gelöst haben
-**Lösung**
+**Lösung:**
 Es wird sobald ein neuer Score vorliegt der alte "wegradiert" und der neue hingeschrieben
 
 ## Testcase 3: Paddle bewegt sich nach oben
@@ -42,5 +42,5 @@ Es wird sobald ein neuer Score vorliegt der alte "wegradiert" und der neue hinge
 
 **Aber:**
 Wenn eine Taste gehalten wird von Spieler A und Spieler B seinen Paddle bewegen möchte unterbricht die Bewegung von Spieler A
-**Lösung**
+**Lösung:**
 
