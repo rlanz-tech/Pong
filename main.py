@@ -1,4 +1,12 @@
-# Hauptloop
+############################################
+#               Pong Spiel                 #
+############################################   
+# Version: 1.0 (Stand 20.03.2026)      
+# Robin Lanz, Sebastian Hacker, Christina Kaiser, Fabian Thiele   
+# Spielbeschreibung: 
+#   Pong Spiel für zwei Spieler, mit wachsender Schwierigkeit durch zunehmende Geschwindigkeit des Balls.          
+#   Der erste mit 5 Punkten gewinnt.            
+
 
 import logic
 import time 
@@ -27,7 +35,7 @@ wn.onkeypress(lambda: logic.bar_left_down(bar_left, bar_speed), "s")
 wn.onkeypress(lambda: logic.bar_right_up(bar_right, bar_speed), "Up")
 wn.onkeypress(lambda: logic.bar_right_down(bar_right, bar_speed), "Down")
 
-
+# Hauptloop
 while True:
     # sleep Sorgt dafür, dass die Geschwindigkeit regelmäßiger ist. max. 0.01 ~ 100 fps. Wenn diese Anzahl unterschritten wird, trotzdem ungleichmäßiges v(Ball) (Sebastian Hacker)
     time.sleep(0.01)
