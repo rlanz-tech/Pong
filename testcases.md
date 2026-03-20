@@ -24,10 +24,8 @@
 **Tatsächliches Ergebnis:**  
 **Status:** Funktioniert  
 ---
-**Aber:**
-Am Anfang wurden die Zahlen alle übereinander geschrieben, da wir es mit dem Pen gelöst haben
-**Lösung:**
-Es wird sobald ein neuer Score vorliegt der alte "wegradiert" und der neue hingeschrieben
+**Aber:** Am Anfang wurden die Zahlen alle übereinander geschrieben, da wir es mit dem Pen gelöst haben
+**Lösung:** Es wird sobald ein neuer Score vorliegt der alte "wegradiert" und der neue hingeschrieben
 
 ## Testcase 3: Paddle bewegt sich nach oben
 **ID:** TC-003  
