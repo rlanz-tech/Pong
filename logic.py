@@ -62,6 +62,8 @@ def create_ball():
     ball.color(ball.startcolor)
     ball.penup()
     ball.goto(0, 0)
+    # Ball ist beim ertellen nicht sichtbar
+    ball.hideturtle()
     # Variable Farbe (Liste und Frequenz darf ohne weiteres verändert werden)
     ball.hitcount = 0
     ball.colorlst = ["green", "red", "blue", "purple"]
@@ -146,6 +148,44 @@ def create_scoreboard():
     pen.color("White")
     pen.penup()
     pen.hideturtle()
-    pen.goto(0, 260)
-    pen.write("Player 1: 0 Player 2: 0", align="center", font=("Courier", 26, "normal"))
     return pen
+
+# Scoreboard aktualisieren, wenn sich der Punktestand ändert
+def update_scoreboard(pen, score_one, score_two, status="playing"):
+    pen.clear()
+    pen.goto(0, 260)
+    pen.write(f"Player 1: {score_one} Player 2: {score_two}", align="center", font=("Courier", 26, "normal"))
+
+    if status == "start":
+        pen.goto(0, 50)
+        pen.write("PONG BATTLE", align="center", font=("Courier", 40, "bold"))
+        pen.goto(0, -20)
+        pen.write("Press any key to start", align="center", font=("Courier", 16, "normal"))
+
+    elif status == "game_over":
+        winner = "Player 1" if score_one >= 5 else "Player 2"
+        pen.goto(0, 50)
+        pen.write("GAME OVER", align="center", font=("Courier", 40, "bold"))
+        pen.goto(0, -20)
+        pen.write(f"{winner} wins!", align="center", font=("Courier", 18, "normal"))
+        pen.goto(0, -60)
+        pen.write("Press any key to restart", align="center", font=("Courier", 18, "normal"))
+
+def game_start(game_active, score_one, score_two, ball, pen):
+    if not game_active:
+        if score_one >= 5 or score_two >= 5:
+            score_one = 0
+            score_two = 0
+            ball.goto(0, 0)
+
+        # Ball wird angezeigt, wenn das Spiel startet
+        ball.showturtle()
+
+        # Text wird aktualisiert, 
+        update_scoreboard(pen, score_one, score_two, status="playing")
+
+        # gibt die neuen Werte an main zurück
+        return True, score_one, score_two
+    
+    # bei laufendem SPiel, wird nichts verändert
+    return game_active, score_one, score_two
