@@ -15,27 +15,10 @@ score_one = 0
 score_two = 0
 
 # Optische Wiedergabe des Spielfensters, Schläger (Robin Lanz) und Ball (Sebastian Hacker) und Scoreboard (Christina Kaiser) werden erstellt.
-wn = logic.create_window()
+wn = logic.wn
 bar_left, bar_right = logic.create_bars(bar_width, bar_height, barstartpos) 
 ball = logic.create_ball()
 pen = logic.create_scoreboard()
-
-# Tasteneingabe (Robin Lanz)
-wn.listen()
-# Taste gedrückt -> Funktion setzt Vaiable auf True
-wn.onkeypress(lambda: logic.key_press_w(), "w")      
-wn.onkeypress(lambda: logic.key_press_w(), "W")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
-wn.onkeypress(lambda: logic.key_press_s(), "s")      
-wn.onkeypress(lambda: logic.key_press_s(), "S")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
-wn.onkeypress(lambda: logic.key_press_up(), "Up")
-wn.onkeypress(lambda: logic.key_press_down(), "Down")
-# Taste losgelassen -> Funktion setzt Variable auf False
-wn.onkeyrelease(lambda: logic.key_release_w(), "w")
-wn.onkeyrelease(lambda: logic.key_release_w(), "W")
-wn.onkeyrelease(lambda: logic.key_release_s(), "s")
-wn.onkeyrelease(lambda: logic.key_release_s(), "S")
-wn.onkeyrelease(lambda: logic.key_release_up(), "Up")
-wn.onkeyrelease(lambda: logic.key_release_down(), "Down")
 
 
 while True:

@@ -11,6 +11,9 @@ def create_window():
     wn.tracer(0)
     return wn
 
+wn = create_window()
+
+
 # Schläger erstellen (Robin Lanz)
 def create_bars(barwidth, barheight, barstartpos):
         bar_left = turtle.Turtle()
@@ -62,6 +65,24 @@ def key_release_up():
 def key_release_down():
     global key_down
     key_down = False
+
+# Tasteneingabe (Robin Lanz)
+wn.listen()
+# Taste gedrückt -> Funktion setzt Vaiable auf True
+wn.onkeypress(lambda: key_press_w(), "w")      
+wn.onkeypress(lambda: key_press_w(), "W")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
+wn.onkeypress(lambda: key_press_s(), "s")      
+wn.onkeypress(lambda: key_press_s(), "S")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
+wn.onkeypress(lambda: key_press_up(), "Up")
+wn.onkeypress(lambda: key_press_down(), "Down")
+# Taste losgelassen -> Funktion setzt Variable auf False
+wn.onkeyrelease(lambda: key_release_w(), "w")
+wn.onkeyrelease(lambda: key_release_w(), "W")
+wn.onkeyrelease(lambda: key_release_s(), "s")
+wn.onkeyrelease(lambda: key_release_s(), "S")
+wn.onkeyrelease(lambda: key_release_up(), "Up")
+wn.onkeyrelease(lambda: key_release_down(), "Down")
+
 
 # Schläger bewegen (Robin Lanz)
 def bar_left_up(bar, speed):
