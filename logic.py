@@ -66,11 +66,12 @@ def create_ball():
     # Variable Farbe (Liste und Frequenz darf ohne weiteres verändert werden)
     ball.hitcount = 0
     ball.colorlst = ["green", "red", "blue", "purple"]
-    ball.color_change_frequency = 2
+    ball.color_change_frequency = 1
     # Ballgeschwindigkeit (kann verändert werden)
     ball.start_xaxis = 2.5
     ball.start_yaxis = 2
-    ball.speed_multiplier = 1.1
+    ball.speed_multiplier = 1.2
+    ball.speed_border = 5.5
     # (!nichts ändern)
     ball.xaxis = ball.start_xaxis
     ball.yaxis = ball.start_yaxis
@@ -97,7 +98,6 @@ def collision_border(ball, pen, score_one, score_two):
     
     if ball.xcor() > 390:
         ball.goto(0, 0)
-        ball.xaxis *= -1
         score_one += 1
         pen.clear()
         pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
@@ -113,7 +113,6 @@ def collision_border(ball, pen, score_one, score_two):
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
-        ball.xaxis *= -1
         score_two += 1
         pen.clear()
         pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
@@ -145,9 +144,10 @@ def collision_bar(ball, bar_left, bar_right):
             if ball.hitcount % ball.color_change_frequency == 0:
                 ball.colorlst_index = ball.colorlst[((ball.hitcount //ball.color_change_frequency)-1) %len(ball.colorlst)]
                 ball.color(ball.colorlst_index)
-                #Beschleunigung des Balls (!hier nichts anpassen)
-                ball.xaxis *= ball.speed_multiplier
-                ball.yaxis *= ball.speed_multiplier
+                #Beschleunigung des Balls
+                if abs(ball.xaxis) < ball.speed_border:
+                    ball.xaxis *= ball.speed_multiplier
+                    ball.yaxis *= ball.speed_multiplier
 
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 68 and ball.ycor() > bar_left.ycor() - 68):
         # If, damit der Ball nicht mehrmals die Kollision erkennt
@@ -159,9 +159,10 @@ def collision_bar(ball, bar_left, bar_right):
             if ball.hitcount % ball.color_change_frequency == 0:
                 ball.colorlst_index = ball.colorlst[((ball.hitcount // ball.color_change_frequency)-1) %len(ball.colorlst)]
                 ball.color(ball.colorlst_index)
-                #Beschleunigung des Balls (!hier nichts anpassen)
-                ball.xaxis *= ball.speed_multiplier
-                ball.yaxis *= ball.speed_multiplier
+                #Beschleunigung des Balls
+                if abs(ball.xaxis) < ball.speed_border:
+                    ball.xaxis *= ball.speed_multiplier
+                    ball.yaxis *= ball.speed_multiplier
 
 # Scoreboard erstellen (Christina Kaiser)
 # pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
