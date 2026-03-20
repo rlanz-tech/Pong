@@ -19,6 +19,8 @@ def create_window():
         pass 
     return wn
 
+wn = create_window()
+
 # Schläger erstellen (Robin Lanz)
 def create_bars(barwidth, barheight, barstartpos):
         bar_left = turtle.Turtle()
@@ -37,6 +39,56 @@ def create_bars(barwidth, barheight, barstartpos):
         bar_right.penup()
         bar_right.goto(barstartpos, 0)
         return bar_left, bar_right
+
+# Variablen für den Tasteninput (Robin Lanz)
+key_w = False
+key_s = False
+key_up = False
+key_down = False
+
+# Funktionen für die Tasten (Robin Lanz)
+def key_press_w():
+    global key_w
+    key_w = True
+def key_press_s():
+    global key_s
+    key_s = True
+def key_press_up():
+    global key_up
+    key_up = True
+def key_press_down():
+    global key_down
+    key_down = True
+
+def key_release_w():
+    global key_w
+    key_w = False
+def key_release_s():
+    global key_s
+    key_s = False
+def key_release_up():
+    global key_up
+    key_up = False
+def key_release_down():
+    global key_down
+    key_down = False
+
+# Tasteneingabe (Robin Lanz)
+wn.listen()
+# Taste gedrückt -> Funktion setzt Vaiable auf True
+wn.onkeypress(lambda: key_press_w(), "w")      
+wn.onkeypress(lambda: key_press_w(), "W")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
+wn.onkeypress(lambda: key_press_s(), "s")      
+wn.onkeypress(lambda: key_press_s(), "S")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
+wn.onkeypress(lambda: key_press_up(), "Up")
+wn.onkeypress(lambda: key_press_down(), "Down")
+# Taste losgelassen -> Funktion setzt Variable auf False
+wn.onkeyrelease(lambda: key_release_w(), "w")
+wn.onkeyrelease(lambda: key_release_w(), "W")
+wn.onkeyrelease(lambda: key_release_s(), "s")
+wn.onkeyrelease(lambda: key_release_s(), "S")
+wn.onkeyrelease(lambda: key_release_up(), "Up")
+wn.onkeyrelease(lambda: key_release_down(), "Down")
 
 # Schläger bewegen (Robin Lanz)
 def bar_left_up(bar, speed):
@@ -71,6 +123,8 @@ def create_ball():
     ball.color(ball.startcolor)
     ball.penup()
     ball.goto(0, 0)
+    # Ball ist beim ertellen nicht sichtbar
+    ball.hideturtle()
     # Variable Farbe (Liste und Frequenz darf ohne weiteres verändert werden)
     ball.hitcount = 0
     ball.colorlst = ["green", "red", "blue", "purple"]
@@ -136,7 +190,6 @@ def collision_border(ball, pen, score_one, score_two):
 
     return score_one, score_two
 
-
 # Kollision von Schäger und Ball (Christina Kaiser)
     # Update: 18.03: Die Größe auf 68 (vorher 50) angepasst, damit die Kollision besser erkannt wird (Sebastian Hacker)
     # Update: 19.03: Farbwechsel nach Frequenz (Sebastian Hacker) +(If-Abfrage für +hitcount; Der Index sagt aus, welches Element der Liste benutzt wird->kann zur Kopplung an Farbe benutz werden)
@@ -180,6 +233,44 @@ def create_scoreboard():
     pen.color("White")
     pen.penup()
     pen.hideturtle()
-    pen.goto(0, 260)
-    pen.write("Player 1: 0 Player 2: 0", align="center", font=("Courier", 26, "normal"))
     return pen
+
+# Scoreboard aktualisieren, wenn sich der Punktestand ändert
+def update_scoreboard(pen, score_one, score_two, status="playing"):
+    pen.clear()
+    pen.goto(0, 260)
+    pen.write(f"Player 1: {score_one} Player 2: {score_two}", align="center", font=("Courier", 26, "normal"))
+
+    if status == "start":
+        pen.goto(0, 50)
+        pen.write("PONG BATTLE", align="center", font=("Courier", 40, "bold"))
+        pen.goto(0, -20)
+        pen.write("Press any key to start", align="center", font=("Courier", 16, "normal"))
+
+    elif status == "game_over":
+        winner = "Player 1" if score_one >= 5 else "Player 2"
+        pen.goto(0, 50)
+        pen.write("GAME OVER", align="center", font=("Courier", 40, "bold"))
+        pen.goto(0, -20)
+        pen.write(f"{winner} wins!", align="center", font=("Courier", 18, "normal"))
+        pen.goto(0, -60)
+        pen.write("Press any key to restart", align="center", font=("Courier", 18, "normal"))
+
+def game_start(game_active, score_one, score_two, ball, pen):
+    if not game_active:
+        if score_one >= 5 or score_two >= 5:
+            score_one = 0
+            score_two = 0
+            ball.goto(0, 0)
+
+        # Ball wird angezeigt, wenn das Spiel startet
+        ball.showturtle()
+
+        # Text wird aktualisiert, 
+        update_scoreboard(pen, score_one, score_two, status="playing")
+
+        # gibt die neuen Werte an main zurück
+        return True, score_one, score_two
+    
+    # bei laufendem SPiel, wird nichts verändert
+    return game_active, score_one, score_two
