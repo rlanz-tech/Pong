@@ -245,7 +245,9 @@ def update_scoreboard(pen, score_one, score_two, status="playing"):
         pen.goto(0, 50)
         pen.write("PONG BATTLE", align="center", font=("Courier", 40, "bold"))
         pen.goto(0, -20)
-        pen.write("Press any key to start", align="center", font=("Courier", 16, "normal"))
+        pen.write("Press space or gamble", align="center", font=("Courier", 16, "normal"))
+        pen.goto(0, -50)
+        pen.write("to start", align="center", font=("Courier", 16, "normal"))
 
     elif status == "game_over":
         winner = "Player 1" if score_one >= 5 else "Player 2"
@@ -254,7 +256,9 @@ def update_scoreboard(pen, score_one, score_two, status="playing"):
         pen.goto(0, -20)
         pen.write(f"{winner} wins!", align="center", font=("Courier", 18, "normal"))
         pen.goto(0, -60)
-        pen.write("Press any key to restart", align="center", font=("Courier", 18, "normal"))
+        pen.write("Press space or gamble", align="center", font=("Courier", 18, "normal"))
+        pen.goto(0, -90)
+        pen.write("to restart", align="center", font=("Courier", 18, "normal"))
 
 def game_start(game_active, score_one, score_two, ball, pen):
     if not game_active:
