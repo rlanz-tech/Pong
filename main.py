@@ -29,12 +29,7 @@ def press_any_key():
     game_active, score_one, score_two = logic.game_start(game_active, score_one, score_two, ball, pen)
 
 # Tasteneingabe führt Bewegungsfunktion aus (Robin Lanz)
-wn.listen()
 wn.onkeypress(press_any_key) # Reagiert auf jede taste zum Starten
-wn.onkeypress(lambda: logic.bar_left_up(bar_left, bar_speed), "w")
-wn.onkeypress(lambda: logic.bar_left_down(bar_left, bar_speed), "s")
-wn.onkeypress(lambda: logic.bar_right_up(bar_right, bar_speed), "Up")
-wn.onkeypress(lambda: logic.bar_right_down(bar_right, bar_speed), "Down")
 
 logic.update_scoreboard(pen, score_one, score_two, status="start")
 
@@ -66,14 +61,16 @@ while True:
             ball.goto(0, 0)
             logic.update_scoreboard(pen, score_one, score_two, status="game_over")
 
-    # Tasteninput abfragen (Robin Lanz )
-    if logic.key_w:
-        logic.bar_left_up(bar_left, bar_speed)      # führt Bewegung des linken Schlägers nach oben aus
-    if logic.key_s:
-        logic.bar_left_down(bar_left, bar_speed)    # führt Bewegung des linken Schlägers nach unten aus
-    if logic.key_up:
-        logic.bar_right_up(bar_right, bar_speed)    # führt Bewegung des rechten Schlägers nach oben aus
-    if logic.key_down:
-        logic.bar_right_down(bar_right, bar_speed)  # führt Bewegung des rechten Schlägers nach unten aus
+        # Tasteninput abfragen (Robin Lanz )
+        if logic.key_w:
+            logic.bar_left_up(bar_left, bar_speed)      # führt Bewegung des linken Schlägers nach oben aus
+        if logic.key_s:
+            logic.bar_left_down(bar_left, bar_speed)    # führt Bewegung des linken Schlägers nach unten aus
+        if logic.key_up:
+            logic.bar_right_up(bar_right, bar_speed)    # führt Bewegung des rechten Schlägers nach oben aus
+        if logic.key_down:
+            logic.bar_right_down(bar_right, bar_speed)  # führt Bewegung des rechten Schlägers nach unten aus
+
     else:
         time.sleep(0.1)
+
