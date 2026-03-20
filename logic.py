@@ -9,6 +9,14 @@ def create_window():
     wn.bgcolor("black")
     wn.setup(width=800, height=600)
     wn.tracer(0)
+    # Update: 20.03.: Verhindern des Vollbildmodus, für die volle Pong Erfahrung (Fabian Thiele)
+    try:
+        root = turtle.getcanvas().winfo_toplevel()
+        root.resizable(False, False)
+        root.attributes("-fullscreen", False)
+        root.attributes("-zoomed", False)
+    except:
+        pass 
     return wn
 
 # Schläger erstellen (Robin Lanz)
