@@ -51,28 +51,35 @@ def bar_right_down(bar, speed):
     y -= speed
     bar.sety(y)
 
-# Ball erstellen -> Grafische Visualisierung (Sebastian Hacker) 
-# Update: 13.03 15Uhr: Achsen (x/y) für die Gewschindigkeit des Balls hinzugefügt. Return zur Benutzung im main.py ergänzt. (Sebastian Hacker)
-# Anmerkung: Ball Gewschwindigkeit zum Testen auf 0.1 gesetzt, damit die Bewegung sichtbar ist. Kann später angepasst werden.
+# Ball erstellen und Definition seiner (Start-)eigenschaften (Sebastian Hacker) 
+    # Update: 13.03: Geschwindigkeit des Balls hinzugefügt. Return zur Benutzung im main.py ergänzt. (Sebastian Hacker)
+    # Update: 19.03: Variable Farbe (auch Startfarbe)+ Frequenz der Änderung (Sebastian Hacker)
 def create_ball():
     ball = turtle.Turtle()
-    ball.speed(0)
+    ball.speed(0)   
     ball.shape("square")
-    ball.color("white")
+    ball.startcolor = "white"
+    ball.color(ball.startcolor)
     ball.penup()
     ball.goto(0, 0)
+    # Variable Farbe (Liste und Frequenz darf ohne weiteres verändert werden)
+    ball.hitcount = 0
+    ball.colorlst = ["green", "red", "blue", "purple"]
+    ball.color_change_frequency = 2
+    # Ballgeschwindigkeit
+    ball.xaxis = 2.5
+    ball.yaxis = 2
 
-    ball.xaxis = 0.1
-    ball.yaxis = 0.1
-    return ball
+    return ball    
 
-#  Ball Bewegung berechnen ohne Kolision(Sebastian Hacker)
+# Ball Bewegung berechnen ohne Kollision(Sebastian Hacker)
 def move_ball(ball):
     ball.setx(ball.xcor() + ball.xaxis)
     ball.sety(ball.ycor() + ball.yaxis)
 
 # Kollisionserkennung mit der Obergrenze und Untergrenze(Fabian Thiele)
 # Score wird erhöht, wenn der Ball die Grenze auf einer x Seite berührt. Punktestand wird zurückgegeben, aktuallisiert und angezeigt.(Christina Kaiser)
+    #Update: 19.03: Ballfarbe (Sebastian Hacker)
 def collision_border(ball, pen, score_one, score_two):
     if ball.ycor() > 290:
         ball.sety(290)
@@ -88,6 +95,9 @@ def collision_border(ball, pen, score_one, score_two):
         score_one += 1
         pen.clear()
         pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
+        # Ballfarbe und Liste zurücketzen
+        ball.hitcount = 0
+        ball.color(ball.startcolor)
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
@@ -95,19 +105,38 @@ def collision_border(ball, pen, score_one, score_two):
         score_two += 1
         pen.clear()
         pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
+        # Ballfarbe und Liste zurücketzen
+        ball.hitcount = 0
+        ball.color(ball.startcolor)
 
     return score_one, score_two
 
 
 # Kollision von Schäger und Ball (Christina Kaiser)
+    # Update: 18.03: Die Größe auf 68 (vorher 50) angepasst, damit die Kollision besser erkannt wird (Sebastian Hacker)
+    # Update: 19.03: Farbwechsel nach Frequenz (Sebastian Hacker) +(If-Abfrage für +hitcount; Der Index sagt aus, welches Element der Liste benutzt wird->kann zur Kopplung an Farbe benutz werden)
 def collision_bar(ball, bar_left, bar_right):
-    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < bar_right.ycor() + 50 and ball.ycor() > bar_right.ycor() - 50):
-        ball.setx(340)
-        ball.xaxis *= -1
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < bar_right.ycor() + 68 and ball.ycor() > bar_right.ycor() - 68):
+        # If, damit der Ball nicht mehrmals die Kollision erkennt
+        if ball.xaxis > 0:
+            ball.setx(340)
+            ball.xaxis *= -1
+            #Ballfarbe ändern (!hier nichts anpassen)
+            ball.hitcount += 1
+            if ball.hitcount % ball.color_change_frequency == 0:
+                ball.colorlst_index = ball.colorlst[((ball.hitcount //ball.color_change_frequency)-1) %len(ball.colorlst)]
+                ball.color(ball.colorlst_index)
 
-    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 50 and ball.ycor() > bar_left.ycor() - 50):
-        ball.setx(-340)
-        ball.xaxis *= -1
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 68 and ball.ycor() > bar_left.ycor() - 68):
+        # If, damit der Ball nicht mehrmals die Kollision erkennt
+        if ball.xaxis < 0:
+            ball.setx(-340)
+            ball.xaxis *= -1
+            #Ballfarbe ändern (!hier nichts anpassen)
+            ball.hitcount += 1
+            if ball.hitcount % ball.color_change_frequency == 0:
+                ball.colorlst_index = ball.colorlst[((ball.hitcount // ball.color_change_frequency)-1) %len(ball.colorlst)]
+                ball.color(ball.colorlst_index)
 
 # Scoreboard erstellen (Christina Kaiser)
 # pen beschreibt eine unsichtbare tutrle, die zum Schreiben des Scoreboards benutzt wird
