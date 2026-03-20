@@ -8,7 +8,7 @@
 1. Spiel starten
 2. Ball Richtung obere Wand bewegen lassen
 3. Kollision abwarten
-**Erwartetes Ergebnis:** Ball ändert Y-Richtung von - zu +.  
+**Erwartetes Ergebnis:** Ball ändert Y-Richtung von + zu -.  
 **Tatsächliches Ergebnis:**  
 **Status:** Funktioniert  
 ---
@@ -24,6 +24,10 @@
 **Tatsächliches Ergebnis:**  
 **Status:** Funktioniert  
 ---
+**Aber:**
+Am Anfang wurden die Zahlen alle übereinander geschrieben, da wir es mit dem Pen gelöst haben
+**Lösung**
+Es wird sobald ein neuer Score vorliegt der alte "wegradiert" und der neue hingeschrieben
 
 ## Testcase 3: Paddle bewegt sich nach oben
 **ID:** TC-003  
@@ -32,6 +36,11 @@
 **Schritte:**
 1. Taste „W“ (Spieler A) oder „↑“ (Spieler B) drücken
 2. Bewegung beobachten
-**Erwartetes Ergebnis:** Paddle.y verringert sich (bewegt nach oben).  
+**Erwartetes Ergebnis:** Paddle.y erhöht sich (bewegt nach oben).  
 **Tatsächliches Ergebnis:**  
 **Status:** Funktioniert
+
+**Aber:**
+Wenn eine Taste gehalten wird von Spieler A und Spieler B seinen Paddle bewegen möchte unterbricht die Bewegung von Spieler A
+**Lösung**
+
