@@ -9,10 +9,15 @@ def create_window():
     wn.bgcolor("black")
     wn.setup(width=800, height=600)
     wn.tracer(0)
+    # Update: 20.03.: Verhindern des Vollbildmodus, für die volle Pong Erfahrung (Fabian Thiele)
+    try:
+        root = turtle.getcanvas().winfo_toplevel()
+        root.resizable(False, False)
+        root.attributes("-fullscreen", False)
+        root.attributes("-zoomed", False)
+    except:
+        pass 
     return wn
-
-wn = create_window()
-
 
 # Schläger erstellen (Robin Lanz)
 def create_bars(barwidth, barheight, barstartpos):
@@ -32,57 +37,6 @@ def create_bars(barwidth, barheight, barstartpos):
         bar_right.penup()
         bar_right.goto(barstartpos, 0)
         return bar_left, bar_right
-
-# Variablen für den Tasteninput (Robin Lanz)
-key_w = False
-key_s = False
-key_up = False
-key_down = False
-
-# Funktionen für die Tasten (Robin Lanz)
-def key_press_w():
-    global key_w
-    key_w = True
-def key_press_s():
-    global key_s
-    key_s = True
-def key_press_up():
-    global key_up
-    key_up = True
-def key_press_down():
-    global key_down
-    key_down = True
-
-def key_release_w():
-    global key_w
-    key_w = False
-def key_release_s():
-    global key_s
-    key_s = False
-def key_release_up():
-    global key_up
-    key_up = False
-def key_release_down():
-    global key_down
-    key_down = False
-
-# Tasteneingabe (Robin Lanz)
-wn.listen()
-# Taste gedrückt -> Funktion setzt Vaiable auf True
-wn.onkeypress(lambda: key_press_w(), "w")      
-wn.onkeypress(lambda: key_press_w(), "W")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
-wn.onkeypress(lambda: key_press_s(), "s")      
-wn.onkeypress(lambda: key_press_s(), "S")             # Update: Groß- und Kleinschreibung berücksichtigt (Robin Lanz)
-wn.onkeypress(lambda: key_press_up(), "Up")
-wn.onkeypress(lambda: key_press_down(), "Down")
-# Taste losgelassen -> Funktion setzt Variable auf False
-wn.onkeyrelease(lambda: key_release_w(), "w")
-wn.onkeyrelease(lambda: key_release_w(), "W")
-wn.onkeyrelease(lambda: key_release_s(), "s")
-wn.onkeyrelease(lambda: key_release_s(), "S")
-wn.onkeyrelease(lambda: key_release_up(), "Up")
-wn.onkeyrelease(lambda: key_release_down(), "Down")
-
 
 # Schläger bewegen (Robin Lanz)
 def bar_left_up(bar, speed):
