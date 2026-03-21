@@ -1,18 +1,21 @@
-############################################
-#               Pong Spiel                 #
-############################################   
-# Version: 1.0 (Stand 20.03.2026)      
-# Robin Lanz, Sebastian Hacker, Christina Kaiser, Fabian Thiele   
-# Spielbeschreibung: 
-#   Pong Spiel für zwei Spieler, mit wachsender Schwierigkeit durch zunehmende Geschwindigkeit des Balls.          
-#   Der erste mit 5 Punkten gewinnt.            
+##############################################################################
+#                                  Pong Spiel                                #
+##############################################################################   
+#                                                                            #      
+# Version: 1.0 (Stand 20.03.2026)                                            #
+# Autoren: Robin Lanz, Sebastian Hacker, Christina Kaiser, Fabian Thiele     #
+# Spielbeschreibung:                                                         #
+#   Pong Spiel für zwei Spieler, mit wachsender Schwierigkeit durch          #
+#   zunehmende Geschwindigkeit des Balls.                                    #
+#   Der erste mit 5 Punkten gewinnt.                                         #
+#                                                                            #
+##############################################################################
 
 
 import logic
 import time 
 
 # Standardwerte in Variablen
-# Anmerkung: Im Vollbild stimmt die Posistion der Schläger nicht mehr
 bar_width = 5
 bar_height = 1
 barstartpos = 350
@@ -36,7 +39,6 @@ def press_any_key():
     global game_active, score_one, score_two
     game_active, score_one, score_two = logic.game_start(game_active, score_one, score_two, ball, pen)
 
-# Tasteneingabe führt Bewegungsfunktion aus (Robin Lanz)
 wn.onkeypress(press_any_key) # Reagiert auf jede taste zum Starten
 
 logic.update_scoreboard(pen, score_one, score_two, status="start")
