@@ -8,13 +8,13 @@ python main.py
 ## Steuerung
 W / S = Spieler 1
 ↑ / ↓ = Spieler 2
-ESC = Beenden
 
 ## Features
 - 2 Spieler
 - Punktesystem
 - Ball- & Paddle-Kollisionen
-
+- Schwierigkeits Erhöhung
+  
 ## Mitglieder
 - Fabian Thiele
 - Christina Kaiser
