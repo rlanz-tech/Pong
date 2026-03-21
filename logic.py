@@ -1,5 +1,4 @@
 # Spielfenster für Pong mit der turtlebibliothek
-
 import turtle
 
 # Fenster erstellen (Fabian Thiele)
@@ -128,13 +127,13 @@ def create_ball():
     ball.hideturtle()
     # Variable Farbe (Liste und Frequenz darf ohne weiteres verändert werden)
     ball.hitcount = 0
-    ball.colorlst = ["green", "red", "blue", "purple"]
-    ball.color_change_frequency = 1
+    ball.colorlst = ["#E7B748", "#72D165", "#78B2D4", "#B35FDF"]
+    ball.color_change_frequency = 3
     # Ballgeschwindigkeit (kann verändert werden)
     ball.start_xaxis = 2.5
     ball.start_yaxis = 2
     ball.speed_multiplier = 1.2
-    ball.speed_border = 5.5
+    ball.speed_border = 6.5
     # (!nichts ändern)
     ball.xaxis = ball.start_xaxis
     ball.yaxis = ball.start_yaxis
@@ -237,6 +236,7 @@ def create_scoreboard():
     return pen
 
 # Scoreboard aktualisieren, wenn sich der Punktestand ändert
+# Unterschiedliche Anezigen je nach Status
 def update_scoreboard(pen, score_one, score_two, status="playing"):
     pen.clear()
     pen.goto(0, 260)
@@ -271,11 +271,11 @@ def game_start(game_active, score_one, score_two, ball, pen):
         # Ball wird angezeigt, wenn das Spiel startet
         ball.showturtle()
 
-        # Text wird aktualisiert, 
+        # Text wird aktualisiert 
         update_scoreboard(pen, score_one, score_two, status="playing")
 
         # gibt die neuen Werte an main zurück
         return True, score_one, score_two
     
-    # bei laufendem SPiel, wird nichts verändert
+    # bei laufendem Spiel, wird nichts verändert
     return game_active, score_one, score_two

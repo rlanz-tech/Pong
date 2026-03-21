@@ -1,11 +1,15 @@
-############################################
-#               Pong Spiel                 #
-############################################   
-# Version: 1.0 (Stand 20.03.2026)      
-# Robin Lanz, Sebastian Hacker, Christina Kaiser, Fabian Thiele   
-# Spielbeschreibung: 
-#   Pong Spiel für zwei Spieler, mit wachsender Schwierigkeit durch zunehmende Geschwindigkeit des Balls.          
-#   Der erste mit 5 Punkten gewinnt.            
+##############################################################################
+#                                  Pong Spiel                                #
+##############################################################################   
+#                                                                            #      
+# Version: 1.0 (Stand 20.03.2026)                                            #
+# Autoren: Robin Lanz, Sebastian Hacker, Christina Kaiser, Fabian Thiele     #
+# Spielbeschreibung:                                                         #
+#   Pong Spiel für zwei Spieler, mit wachsender Schwierigkeit durch          #
+#   zunehmende Geschwindigkeit des Balls.                                    #
+#   Der erste mit 5 Punkten gewinnt.                                         #
+#                                                                            #
+##############################################################################
 
 
 import logic
