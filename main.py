@@ -5,13 +5,13 @@
 # Version: 1.0 (Stand 20.03.2026)                                            #
 # Autoren: Robin Lanz, Sebastian Hacker, Christina Kaiser, Fabian Thiele     #
 # Spielbeschreibung:                                                         #
-#   Pong Spiel für zwei Spieler, mit wachsender Schwierigkeit durch          #
+#   Pong Spiel für zwei Spieler, mit wachsender Schwierigkeit durch eine     #
 #   zunehmende Geschwindigkeit des Balls.                                    #
 #   Der erste mit 5 Punkten gewinnt.                                         #
 #                                                                            #
 ##############################################################################
 
-
+# time Bibliothek wird importiert, um die Geschwindigkeit gleichmäßiger zu gestalten (Sebastian Hacker)
 import logic
 import time 
 
@@ -35,7 +35,7 @@ bar_left, bar_right = logic.create_bars(bar_width, bar_height, barstartpos)
 ball = logic.create_ball()
 pen = logic.create_scoreboard()
 
-# Notwendig, um Spiel zu starten, aktualisiert den Satuts und setzt Score zurück (Christina Kaiser)
+# Notwendig, um das Spiel zu starten, aktualisiert den Status und setzt den Score zurück (Christina Kaiser)
 def press_any_key():
     global game_active, score_one, score_two
     game_active, score_one, score_two = logic.game_start(game_active, score_one, score_two, ball, pen)
