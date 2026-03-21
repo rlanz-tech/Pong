@@ -148,7 +148,7 @@ def move_ball(ball):
 # Kollisionserkennung mit der Obergrenze und Untergrenze(Fabian Thiele)
 # Score wird erhöht, wenn der Ball die Grenze auf einer x Seite berührt. Punktestand wird zurückgegeben, aktuallisiert und angezeigt.(Christina Kaiser)
     # Update: 19.03: Ballfarbe (Sebastian Hacker)
-    # Update: 20.03: Geschwindigkeit
+    # Update: 20.03: Geschwindigkeit und Startrichtung (Sebastian Hacker)
 def collision_border(ball, pen, score_one, score_two):
     if ball.ycor() > 290:
         ball.sety(290)
