@@ -26,7 +26,7 @@ def create_bars(barwidth, barheight, barstartpos):
         bar_left.speed(0)
         bar_left.shape("square")
         bar_left.color("white")
-        bar_left.shapesize(stretch_wid = barwidth, stretch_len = barheight)
+        bar_left.shapesize(stretch_wid = barheight, stretch_len = barwidth)
         bar_left.penup()
         bar_left.goto(-barstartpos, 0)
 
@@ -34,7 +34,7 @@ def create_bars(barwidth, barheight, barstartpos):
         bar_right.speed(0)
         bar_right.shape("square")
         bar_right.color("white")
-        bar_right.shapesize(stretch_wid = barwidth, stretch_len = barheight)
+        bar_right.shapesize(stretch_wid = barheight, stretch_len = barwidth)
         bar_right.penup()
         bar_right.goto(barstartpos, 0)
         return bar_left, bar_right
@@ -45,7 +45,7 @@ key_s = False
 key_up = False
 key_down = False
 
-# Funktionen für die Tasten (Robin Lanz)
+# Funktionen für die Variablendaten der Tasten (Robin Lanz)
 def key_press_w():
     global key_w
     key_w = True
@@ -90,25 +90,26 @@ wn.onkeyrelease(lambda: key_release_up(), "Up")
 wn.onkeyrelease(lambda: key_release_down(), "Down")
 
 # Schläger bewegen (Robin Lanz)
-def bar_left_up(bar, speed):
-    y = bar.ycor()
-    y += speed
-    bar.sety(y)
-
-def bar_left_down(bar, speed):
-    y = bar.ycor()
-    y -= speed
-    bar.sety(y)
-
-def bar_right_up(bar, speed):
-    y = bar.ycor()
-    y += speed
-    bar.sety(y)
-
-def bar_right_down(bar, speed):
-    y = bar.ycor()
-    y -= speed
-    bar.sety(y)
+def bar_left_up(bar, speed, stop):
+    if(bar.ycor() < stop):          # Update: Abfrage der Endposition (Robin Lanz)
+        y = bar.ycor()
+        y += speed
+        bar.sety(y)
+def bar_left_down(bar, speed, stop):
+    if(bar.ycor() > -stop):         # Update: Abfrage der Endposition (Robin Lanz)
+        y = bar.ycor()
+        y -= speed
+        bar.sety(y)
+def bar_right_up(bar, speed, stop):
+    if(bar.ycor() < stop):          # Update: Abfrage der Endposition (Robin Lanz)
+        y = bar.ycor()
+        y += speed
+        bar.sety(y)
+def bar_right_down(bar, speed, stop):
+    if(bar.ycor() > -stop):         # Update: Abfrage der Endposition (Robin Lanz)
+        y = bar.ycor()
+        y -= speed
+        bar.sety(y)
 
 # Ball erstellen und Definition seiner (Start-)eigenschaften (Sebastian Hacker) 
     # Update: 13.03: Geschwindigkeit des Balls hinzugefügt. Return zur Benutzung im main.py ergänzt. (Sebastian Hacker)
@@ -194,10 +195,10 @@ def collision_border(ball, pen, score_one, score_two):
     # Update: 19.03: Farbwechsel nach Frequenz (Sebastian Hacker) +(If-Abfrage für +hitcount; Der Index sagt aus, welches Element der Liste benutzt wird->kann zur Kopplung an Farbe benutz werden)
     # Update: 20.03: Geschwindigkeit des Balls wird mit Farbwechsel erhöht (Sebastian Hacker)
 def collision_bar(ball, bar_left, bar_right):
-    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < bar_right.ycor() + 68 and ball.ycor() > bar_right.ycor() - 68):
+    if (ball.xcor() > 330 and ball.xcor() < 350) and (ball.ycor() < bar_right.ycor() + 68 and ball.ycor() > bar_right.ycor() - 68):
         # If, damit der Ball nicht mehrmals die Kollision erkennt
         if ball.xaxis > 0:
-            ball.setx(340)
+            ball.setx(330)
             ball.xaxis *= -1
             #Ballfarbe ändern (!hier nichts anpassen)
             ball.hitcount += 1
@@ -209,10 +210,10 @@ def collision_bar(ball, bar_left, bar_right):
                     ball.xaxis *= ball.speed_multiplier
                     ball.yaxis *= ball.speed_multiplier
 
-    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 68 and ball.ycor() > bar_left.ycor() - 68):
+    if (ball.xcor() < -330 and ball.xcor() > -350) and (ball.ycor() < bar_left.ycor() + 68 and ball.ycor() > bar_left.ycor() - 68):
         # If, damit der Ball nicht mehrmals die Kollision erkennt
         if ball.xaxis < 0:
-            ball.setx(-340)
+            ball.setx(-330)
             ball.xaxis *= -1
             #Ballfarbe ändern (!hier nichts anpassen)
             ball.hitcount += 1
