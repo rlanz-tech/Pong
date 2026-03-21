@@ -12,11 +12,11 @@ import logic
 import time 
 
 # Standardwerte in Variablen
-# Anmerkung: Im Vollbild stimmt die Posistion der Schläger nicht mehr
-bar_width = 5
-bar_height = 1
+bar_width = 1       # Breite der Schläger: width*20 (Robin Lanz)
+bar_height = 5      # Höhe der Schläger: height*20 (Robin Lanz)
 barstartpos = 350
-bar_speed = 5   # Update: Nach neuem Tasteninput Geschwindigkeit angepasst (Robin Lanz)
+barstoppos = 245    # Update: Endposition der Schläger definiert (Robin Lanz)
+bar_speed = 5       # Update: Nach neuem Tasteninput Geschwindigkeit angepasst (Robin Lanz)
 
 # Punktestand wird auf Null gesetzt 
 score_one = 0
@@ -36,7 +36,6 @@ def press_any_key():
     global game_active, score_one, score_two
     game_active, score_one, score_two = logic.game_start(game_active, score_one, score_two, ball, pen)
 
-# Tasteneingabe führt Bewegungsfunktion aus (Robin Lanz)
 wn.onkeypress(press_any_key) # Reagiert auf jede taste zum Starten
 
 logic.update_scoreboard(pen, score_one, score_two, status="start")
@@ -72,13 +71,13 @@ while True:
 
         # Tasteninput abfragen (Robin Lanz )
         if logic.key_w:
-            logic.bar_left_up(bar_left, bar_speed)      # führt Bewegung des linken Schlägers nach oben aus
+            logic.bar_left_up(bar_left, bar_speed, barstoppos)      # führt Bewegung des linken Schlägers nach oben aus
         if logic.key_s:
-            logic.bar_left_down(bar_left, bar_speed)    # führt Bewegung des linken Schlägers nach unten aus
+            logic.bar_left_down(bar_left, bar_speed, barstoppos)    # führt Bewegung des linken Schlägers nach unten aus
         if logic.key_up:
-            logic.bar_right_up(bar_right, bar_speed)    # führt Bewegung des rechten Schlägers nach oben aus
+            logic.bar_right_up(bar_right, bar_speed, barstoppos)    # führt Bewegung des rechten Schlägers nach oben aus
         if logic.key_down:
-            logic.bar_right_down(bar_right, bar_speed)  # führt Bewegung des rechten Schlägers nach unten aus
+            logic.bar_right_down(bar_right, bar_speed, barstoppos)  # führt Bewegung des rechten Schlägers nach unten aus
 
     else:
         time.sleep(0.1)
