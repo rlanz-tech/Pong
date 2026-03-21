@@ -1,6 +1,6 @@
 # Pong (1.Version)(Python 3.14.2)
 
-Ein einfaches Pong-Spiel in Python mit der Spielebibliothek "turtle"
+Ein einfaches Pong-Spiel in Python mit der Spielebibliothek "turtle" zur visuellen Darstellung der Bewegungen und Objekte des Spiels.
 
 ## Starten
 python main.py
