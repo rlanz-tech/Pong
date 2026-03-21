@@ -125,6 +125,7 @@ def create_ball():
     ball.goto(0, 0)
     # Ball ist beim ertellen nicht sichtbar
     ball.hideturtle()
+    
     # Variable Farbe (Liste und Frequenz darf ohne weiteres verändert werden)
     ball.hitcount = 0
     ball.colorlst = ["#E7B748", "#72D165", "#78B2D4", "#B35FDF"]
@@ -163,7 +164,7 @@ def collision_border(ball, pen, score_one, score_two):
         score_one += 1
         pen.clear()
         pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
-        # Ballfarbe, Liste und Geschwindigkeitzurücketzen
+        # Ballfarbe, Liste und Geschwindigkeit zurücksetzen (!hier nichts anpassen)
         ball.hitcount = 0
         ball.color(ball.startcolor)
         ball.xaxis = ball.start_xaxis
@@ -178,7 +179,7 @@ def collision_border(ball, pen, score_one, score_two):
         score_two += 1
         pen.clear()
         pen.write("Player 1: {} Player 2: {}".format(score_one, score_two), align="center", font=("Courier", 26, "normal"))
-        # Ballfarbe, Liste und Geschwindigkeitzurücketzen
+        # Ballfarbe, Liste und Geschwindigkeit zurücksetzen (!hier nichts anpassen)
         ball.hitcount = 0
         ball.color(ball.startcolor)
         ball.xaxis = -ball.start_xaxis
